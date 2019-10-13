@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
-  todos: Array<ITodo>;
+  public todos: Array<ITodo>;
+  public title: string;
+  public description: string;
 
   constructor() {
     this.todos = _todos;
@@ -27,6 +29,20 @@ export class ContentComponent implements OnInit {
       this.todos.splice(index, 1);
     }
   }
+  public onSubmit() {
+    this.todos.push(new NewTodo(this.title, this.description));
+    this.title = '';
+    this.description = '';
+  }
+}
+
+class NewTodo {
+  constructor(
+    public title: string,
+    public description: string,
+    public done: boolean = false,
+    public isDescription: boolean = false,
+  ) { }
 }
 
 interface ITodo {
