@@ -1,0 +1,27 @@
+<section class="container app-content">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item list-group-item-action" *ngFor="let item of todos">
+
+      <header class="todo-header">
+        <div class="d-flex">
+          <i class="material-icons check-box"
+            (click)="toggleTodo(item)">
+            {{ item.done ? 'check_box' : 'check_box_outline_blank' }}</i>
+          <h5 [ngClass]="{'isCompleted': item.done}">
+            {{ item.title }}
+          </h5>
+        </div>
+        <div class="todo-btn-group">
+          <button class="btn btn-primary" (click)="toggleDescription(item)" [disabled]="!item.description">
+            {{ item.isDescription ? 'hide' : 'show'}} deteiles
+          </button>
+          <button class="btn btn-danger" (click)="deleteTodo(item)">del</button>
+        </div>
+
+      </header>
+      <div class="todo-description" *ngIf="item.isDescription">{{ item.description }}</div>
+    </li>
+  </ul>
+</section>
+
+

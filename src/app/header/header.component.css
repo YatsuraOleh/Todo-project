@@ -1,0 +1,8 @@
+.app-main-header{
+    background-color: #2E5894;
+    padding: 20px 15px;
+}
+.app-main-header h1, p {
+    text-align: center;
+    color: #fff;
+}
