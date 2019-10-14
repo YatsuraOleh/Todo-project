@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { ContentComponent } from './content/content.component';
 import { NewTodoComponent } from './content/new-todo/new-todo.component';
 import { TodosComponent } from './content/todos/todos.component';
+import { HighlightDirective } from './shared/directives';
 
 
 
@@ -17,7 +18,8 @@ import { TodosComponent } from './content/todos/todos.component';
     HeaderComponent,
     ContentComponent,
     NewTodoComponent,
-    TodosComponent
+    TodosComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
