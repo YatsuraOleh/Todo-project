@@ -1,42 +1,8 @@
 <section class="container app-content">
-  <form class="new-todo" #newToDoForm="ngForm"
-  (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <input class="form-control" placeholder="Todo title" name="title" type="text" [(ngModel)]="title" required/>
-    </div>
-    <div class="form-group">
-      <textarea class="form-control" name="description" rows="3" placeholder="Description"
-        [(ngModel)]="description"></textarea>
-    </div>
 
-    <footer>
-      <button class="btn btn-primary" 
-      [disabled]="newToDoForm.invalid"
-      type="submit">Create</button>
-    </footer>
-  </form>
+  <app-new-todo (submit)="isSubmit($event)"></app-new-todo>
 
+  <app-todos [todosList]="todos" (toggleTodo)="isToggleTodo($event)" (toggleDescription)="isToggleDescription($event)"
+    (delete)="isDeleteTodo($event)"></app-todos>
 
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item list-group-item-action" *ngFor="let item of todos">
-
-      <header class="todo-header">
-        <div class="d-flex">
-          <i class="material-icons check-box" (click)="toggleTodo(item)">
-            {{ item.done ? 'check_box' : 'check_box_outline_blank' }}</i>
-          <h5 [ngClass]="{'isCompleted': item.done}">
-            {{ item.title }}
-          </h5>
-        </div>
-        <div class="todo-btn-group">
-          <button class="btn btn-primary" (click)="toggleDescription(item)" [disabled]="!item.description">
-            {{ item.isDescription ? 'hide' : 'show'}} deteiles
-          </button>
-          <button class="btn btn-danger" (click)="deleteTodo(item)">del</button>
-        </div>
-
-      </header>
-      <div class="todo-description" *ngIf="item.isDescription">{{ item.description }}</div>
-    </li>
-  </ul>
 </section>

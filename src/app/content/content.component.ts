@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ITodo } from '../shared/interfaces';
+
 
 @Component({
   selector: 'app-content',
@@ -7,8 +9,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentComponent implements OnInit {
   public todos: Array<ITodo>;
-  public title: string;
-  public description: string;
 
   constructor() {
     this.todos = _todos;
@@ -17,39 +17,21 @@ export class ContentComponent implements OnInit {
   ngOnInit() {
   }
 
-  public toggleTodo(item: ITodo): void {
+  public isSubmit(item: ITodo): void {
+    this.todos.push(item);
+  }
+  public isToggleTodo(item: ITodo): void {
     item.done = !item.done;
   }
-  public toggleDescription(item: ITodo): void {
+  public isToggleDescription(item: ITodo): void {
     item.isDescription = !item.isDescription;
   }
-  public deleteTodo(item: ITodo): void {
+  public isDeleteTodo(item: ITodo): void {
     const index = this.todos.indexOf(item);
     if (index > -1) {
       this.todos.splice(index, 1);
     }
   }
-  public onSubmit() {
-    this.todos.push(new NewTodo(this.title, this.description));
-    this.title = '';
-    this.description = '';
-  }
-}
-
-class NewTodo {
-  constructor(
-    public title: string,
-    public description: string,
-    public done: boolean = false,
-    public isDescription: boolean = false,
-  ) { }
-}
-
-interface ITodo {
-  done: boolean;
-  title: string;
-  description: string;
-  isDescription: boolean;
 }
 
 const _todos: Array<ITodo> = [
